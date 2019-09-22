@@ -30,13 +30,13 @@ var con = mysql.createConnection({
 })
 
 con.connect(err => {
-  if err throw err
+  if(err) throw err
  console.log("Connected.")
 })
 
 bot.on("message", message => {
   con.query(`SELECT * FROM wolfbot WHERE id = '${message.author.id}'`, (err, rows) => {
-    if err throw err
+    if(err) throw err
     let sql;
     if message.author.bot return;
 
