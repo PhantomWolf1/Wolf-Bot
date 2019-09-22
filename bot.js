@@ -38,7 +38,6 @@ bot.on("message", message => {
   con.query(`SELECT * FROM wolfbot WHERE id = '${message.author.id}'`, (err, rows) => {
     if(err) throw err
     let sql;
-    if message.author.bot return;
 
     if(rows.length < 1) {
       sql = `INSERT INTO wolfbot (userid, xp) VALUES ('${message.author.id}, ${generateXP()}')`
