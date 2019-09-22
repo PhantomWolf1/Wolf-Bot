@@ -35,7 +35,7 @@ con.connect(err => {
 })
 
 bot.on("message", message => {
-  con.query(`SELECT * FROM wolfbot WHERE id = '${message.author.id}'`, (err, rows) => {
+  con.query(`SELECT * FROM wolfbot WHERE userid = '${message.author.id}'`, (err, rows) => {
     if(err) throw err
     let sql;
 
@@ -43,7 +43,7 @@ bot.on("message", message => {
       sql = `INSERT INTO wolfbot (userid, xp) VALUES ('${message.author.id}, ${generateXP()}')`
     } else {
       let xp = rows[0].xp
-      sql = `UPDATE wolfbot SET xp = ${xp + generateXP()} WHERE id = '${message.author.id}'`
+      sql = `UPDATE wolfbot SET xp = ${xp + generateXP()} WHERE userid = '${message.author.id}'`
     }
     con.query(sql, console.log);
   })
